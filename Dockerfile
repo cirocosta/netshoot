@@ -19,7 +19,8 @@ RUN set -ex \
     curl \
     ethtool \
     ipvsadm \
-    ngrep
+    ngrep \
+    nmap 
 
 
 # apparmor issue #14140
