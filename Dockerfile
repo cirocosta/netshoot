@@ -20,11 +20,12 @@ RUN set -ex \
     ipvsadm \
     ngrep \
     iperf \
+    bash \
     nmap \
     conntrack-tools
-# apparmor issue #14140
+
 RUN mv /usr/sbin/tcpdump /usr/bin/tcpdump
 
 ADD netgen.sh /usr/local/bin/netgen
 
-CMD ["sh"]
+ENTRYPOINT [ "/bin/bash" ]
