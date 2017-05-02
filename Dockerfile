@@ -20,9 +20,11 @@ RUN set -ex \
     ipvsadm \
     ngrep \
     iperf \
-    bash \
     nmap \
-    conntrack-tools
+    conntrack-tools \
+    bash \
+    jq \
+    vim
 
 RUN mv /usr/sbin/tcpdump /usr/bin/tcpdump
 
