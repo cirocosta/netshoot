@@ -25,7 +25,8 @@ RUN set -ex \
     bash \
     jq \
     vim \
-    git
+    git \
+    tree
 
 RUN mv /usr/sbin/tcpdump /usr/bin/tcpdump
 
