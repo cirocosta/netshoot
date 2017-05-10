@@ -24,7 +24,8 @@ RUN set -ex \
     conntrack-tools \
     bash \
     jq \
-    vim
+    vim \
+    git
 
 RUN mv /usr/sbin/tcpdump /usr/bin/tcpdump
 
