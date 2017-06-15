@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM golang:alpine AS go
 
 RUN set -x && \
   apk add --update git && \
@@ -7,8 +7,8 @@ RUN set -x && \
 
 
 FROM alpine
-COPY --from=builder /go/bin/hey /usr/local/bin/hey
-COPY --from=builder /go/bin/vegeta /usr/local/bin/vegeta
+COPY --from=go /go/bin/hey /usr/local/bin/hey
+COPY --from=go /go/bin/vegeta /usr/local/bin/vegeta
 
 RUN set -ex \
     && echo "http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
