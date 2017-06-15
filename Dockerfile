@@ -1,4 +1,14 @@
-FROM alpine:3.5
+FROM golang:alpine
+
+RUN set -x && \
+  apk add --update git && \
+  go get -u -v github.com/rakyll/hey && \
+  go get -u -v github.com/tsenart/vegeta
+
+
+FROM alpine
+COPY --from=builder /go/bin/hey /usr/local/bin/hey
+COPY --from=builder /go/bin/vegeta /usr/local/bin/vegeta
 
 RUN set -ex \
     && echo "http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
@@ -26,10 +36,10 @@ RUN set -ex \
     jq \
     vim \
     git \
-    tree
+    tree \
+    the_silver_searcher
 
 RUN mv /usr/sbin/tcpdump /usr/bin/tcpdump
 
 ADD netgen.sh /usr/local/bin/netgen
-
 ENTRYPOINT [ "/bin/bash" ]
