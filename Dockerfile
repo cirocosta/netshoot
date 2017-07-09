@@ -3,13 +3,10 @@ FROM golang:alpine AS go
 RUN set -x && \
   apk add --update git && \
   go get -u -v github.com/rakyll/hey && \
-  go get -u -v github.com/tsenart/vegeta && \
   go get -u -v github.com/astaxie/bat
-
 
 FROM alpine
 COPY --from=go /go/bin/hey /usr/local/bin/hey
-COPY --from=go /go/bin/vegeta /usr/local/bin/vegeta
 COPY --from=go /go/bin/bat /usr/local/bin/bat
 
 RUN set -ex \
