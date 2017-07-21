@@ -38,6 +38,10 @@ RUN set -ex \
     tree \
     the_silver_searcher
 
+RUN set -ex \
+  && curl -L -o /usr/local/bin/filla https://releases.filla.be/linux-amd64/filla \
+  && chmod +x /usr/local/bin/filla
+
 RUN mv /usr/sbin/tcpdump /usr/bin/tcpdump
 
 ADD netgen.sh /usr/local/bin/netgen
